@@ -24,12 +24,14 @@ public class CoctailControllerTests {
 	public void getCocktailAPI() throws Exception
 	{
 	  mvc.perform( MockMvcRequestBuilders
-		  .get("http://localhost:8080/cocktails?search=iets")
+		  .get("http://localhost:8080/cocktails?search=russian")
 		  .accept(MediaType.APPLICATION_JSON))
 			  .andExpect(MockMvcResultMatchers.status().isOk())
 			  .andExpect(MockMvcResultMatchers.content().contentType("application/json;charset=UTF-8"))
-			  .andExpect(MockMvcResultMatchers.jsonPath("[0].name").value("Margerita"))
-			  .andExpect(MockMvcResultMatchers.jsonPath("[1].name").value("Blue Margerita"));
+			  .andExpect(MockMvcResultMatchers.jsonPath("$.drinks").exists())
+			  .andExpect(MockMvcResultMatchers.jsonPath("$.drinks[0].strDrink").value("Black Russian"))
+			  .andExpect(MockMvcResultMatchers.jsonPath("$.drinks[1].strDrink").value("White Russian"));
+
 	}
 
 

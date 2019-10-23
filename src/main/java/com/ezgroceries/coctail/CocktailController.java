@@ -1,6 +1,15 @@
 package com.ezgroceries.coctail;
 
+import feign.Feign;
+import feign.FeignException;
+import feign.Logger;
+import feign.RequestLine;
+import feign.gson.GsonDecoder;
+import feign.gson.GsonEncoder;
+import feign.okhttp.OkHttpClient;
+import feign.slf4j.Slf4jLogger;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.hateoas.Resource;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,36 +20,28 @@ import java.util.UUID;
 @RequestMapping(produces = "application/json")
 public class CocktailController {
 
+    CocktailDBClient myCocktailClient;
+
+    public CocktailController () {
+        myCocktailClient = Feign.builder()
+                .encoder(new GsonEncoder())
+                .decoder(new GsonDecoder())
+                .logger(new Slf4jLogger(CocktailDBClient.class))
+                .logLevel(Logger.Level.FULL)
+                .target(CocktailDBClient.class, "https://www.thecocktaildb.com/api/json/v1/1");
+    }
+
     @GetMapping (value = "/cocktails")
-    public List<Cocktail> get(@RequestParam String search) {
-        return getDummyResources();
+    public CocktailDBResponse get(String search) {
+        try {
+            return myCocktailClient.searchCocktails(search);
+        } catch (FeignException fe) {
+            System.out.println("Got a FeignException !");
+            throw fe;
+        }
+
     }
 
-    private List<Cocktail> getDummyResources() {
-        ArrayList<String> ingList1 = new ArrayList<String>();
-        ingList1.add("Tequila");
-        ingList1.add("Triple Sec");
-        ingList1.add("Lime Juice");
-        ingList1.add("Salt");
 
-        ArrayList<String> ingList2 = new ArrayList<String>();
-        ingList2.add("Tequila");
-        ingList2.add("Blue Curacao");
-        ingList2.add("Lime Juice");
-        ingList2.add("Salt");
 
-        return Arrays.asList(
-                new Cocktail(
-                        UUID.fromString("23b3d85a-3928-41c0-a533-6538a71e17c4"), "Margerita",
-                "Cocktail glass",
-                "Rub the rim of the glass with the lime slice to make the salt stick to it. Take care to moisten..",
-                "https://www.thecocktaildb.com/images/media/drink/wpxpvu1439905379.jpg",
-                        ingList1),
-                new Cocktail(
-                        UUID.fromString("d615ec78-fe93-467b-8d26-5d26d8eab073"), "Blue Margerita",
-                "Cocktail glass",
-                "Rub rim of cocktail glass with lime juice. Dip rim in coarse salt..",
-                "https://www.thecocktaildb.com/images/media/drink/qtvvyq1439905913.jpg",
-                        ingList2));
-    }
 }
