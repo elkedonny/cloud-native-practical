@@ -1,4 +1,4 @@
-package com.ezgroceries.coctail;
+package com.ezgroceries.cocktail;
 
 import com.ezgroceries.config.CocktailDBClientConfig;
 import feign.Headers;
@@ -6,8 +6,6 @@ import feign.Param;
 import feign.RequestLine;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.hateoas.Resource;
 
 @Component
 @FeignClient(name = "cocktailDBClient", url = "https://www.thecocktaildb.com/api/json/v1/1", configuration= CocktailDBClientConfig.class)

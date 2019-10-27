@@ -1,20 +1,13 @@
-package com.ezgroceries.coctail;
+package com.ezgroceries.cocktail;
 
 import feign.Feign;
 import feign.FeignException;
 import feign.Logger;
-import feign.RequestLine;
 import feign.gson.GsonDecoder;
 import feign.gson.GsonEncoder;
-import feign.okhttp.OkHttpClient;
 import feign.slf4j.Slf4jLogger;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.hateoas.Resource;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping(produces = "application/json")

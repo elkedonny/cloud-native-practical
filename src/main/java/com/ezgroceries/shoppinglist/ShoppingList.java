@@ -1,22 +1,27 @@
 package com.ezgroceries.shoppinglist;
 
-import com.ezgroceries.coctail.Cocktail;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.ezgroceries.cocktail.Cocktail;
+import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
+@Table(name = "SHOPPING_LIST")
 public class ShoppingList {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)   /* AUTO   SEQUENCE */
+    @Column(name = "ID")
     private UUID shoppingListId;
     private String name;
     private ArrayList<String> ingredients;
+
+    //@ManyToMany(cascade = CascadeType.ALL, mappedBy = "shopping_list")
+    //private Set<Cocktail> cocktails = new HashSet<Cocktail>();
+
+    public ShoppingList() {}
 
     public ShoppingList(UUID shoppingListId, String name, ArrayList<String> ingredients) {
         this.shoppingListId = shoppingListId;
@@ -40,7 +45,7 @@ public class ShoppingList {
         this.name = name;
     }
 
-    public List<String> getIngredients() {
+    public ArrayList<String> getIngredients() {
         return ingredients;
     }
 
@@ -51,5 +56,15 @@ public class ShoppingList {
     public void addCoctail(Cocktail cocktail) {
         if (cocktail.getIngredients() != null) this.ingredients.addAll(cocktail.getIngredients());
     }
+
+    /*
+    public Set<Cocktail> getCocktails() {
+        return cocktails;
+    }
+
+    public void setCocktails(Set<Cocktail> cocktails) {
+        this.cocktails = cocktails;
+    }
+    */
 
 }

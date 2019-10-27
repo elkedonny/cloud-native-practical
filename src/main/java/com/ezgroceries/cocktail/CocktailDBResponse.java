@@ -1,4 +1,4 @@
-package com.ezgroceries.coctail;
+package com.ezgroceries.cocktail;
 
 import java.util.List;
 

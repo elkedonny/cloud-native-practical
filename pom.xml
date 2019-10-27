@@ -46,7 +46,8 @@
 			<version>2.1.9.RELEASE</version>
 			<scope>compile</scope>
 		</dependency>
-		<!-- H2 embedded database  -->
+
+		<!-- H2 embedded database - access via http://localhost:8080/h2-console-->
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
@@ -86,10 +87,28 @@
 			<artifactId>feign-slf4j</artifactId>
 			<version>9.3.1</version>
 		</dependency>
+		<!-- End of Feign Builder dependencies -->
+
         <dependency>
             <groupId>org.springframework.hateoas</groupId>
             <artifactId>spring-hateoas</artifactId>
         </dependency>
+
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>42.2.5</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-core</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+		</dependency>
 
     </dependencies>
 
@@ -112,8 +131,6 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-
-
 		</plugins>
 	</build>
 

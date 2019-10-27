@@ -1,16 +1,13 @@
 package com.ezgroceries.shoppinglist;
 
-import com.ezgroceries.coctail.Cocktail;
+import com.ezgroceries.cocktail.Cocktail;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
 import java.net.URI;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.UUID;
 
 
