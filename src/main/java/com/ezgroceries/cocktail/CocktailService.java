@@ -8,8 +8,9 @@ import java.util.stream.Collectors;
 @Service
 public class CocktailService {
 
-    private final CocktailRepository cocktailRepository;
+    private CocktailRepository cocktailRepository;
 
+    public CocktailService() {}
     public CocktailService(CocktailRepository cocktailRepository) {
         this.cocktailRepository = cocktailRepository;
     }
