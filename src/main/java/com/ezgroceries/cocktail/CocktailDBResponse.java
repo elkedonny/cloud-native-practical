@@ -1,6 +1,8 @@
 package com.ezgroceries.cocktail;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class CocktailDBResponse {
 
@@ -195,6 +197,27 @@ public class CocktailDBResponse {
         public void setStrIngredient15(String strIngredient15) {
             this.strIngredient15 = strIngredient15;
         }
+
+        public Set<String> getIngredients() {
+            Set<String> ingredients = new HashSet<>();
+            if (strIngredient1 != null) ingredients.add(strIngredient1);
+            if (strIngredient2 != null) ingredients.add(strIngredient2);
+            if (strIngredient3 != null) ingredients.add(strIngredient3);
+            if (strIngredient4 != null) ingredients.add(strIngredient4);
+            if (strIngredient5 != null) ingredients.add(strIngredient5);
+            if (strIngredient6 != null) ingredients.add(strIngredient6);
+            if (strIngredient7 != null) ingredients.add(strIngredient7);
+            if (strIngredient8 != null) ingredients.add(strIngredient8);
+            if (strIngredient9 != null) ingredients.add(strIngredient9);
+            if (strIngredient10 != null) ingredients.add(strIngredient10);
+            if (strIngredient11 != null) ingredients.add(strIngredient11);
+            if (strIngredient12 != null) ingredients.add(strIngredient12);
+            if (strIngredient13 != null) ingredients.add(strIngredient13);
+            if (strIngredient14 != null) ingredients.add(strIngredient14);
+            if (strIngredient15 != null) ingredients.add(strIngredient15);
+            return ingredients;
+        }
+
     }
 
 }

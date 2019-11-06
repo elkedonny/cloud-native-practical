@@ -1,15 +1,13 @@
 package com.ezgroceries.shoppinglist;
 
-import com.ezgroceries.cocktail.Cocktail;
+import com.ezgroceries.cocktail.CocktailResource;
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.UUID;
 
 @Entity
 @Table(name = "SHOPPING_LIST")
-public class ShoppingList {
+public class ShoppingListResource {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)   /* AUTO   SEQUENCE */
@@ -21,9 +19,9 @@ public class ShoppingList {
     //@ManyToMany(cascade = CascadeType.ALL, mappedBy = "shopping_list")
     //private Set<Cocktail> cocktails = new HashSet<Cocktail>();
 
-    public ShoppingList() {}
+    public ShoppingListResource() {}
 
-    public ShoppingList(UUID shoppingListId, String name, ArrayList<String> ingredients) {
+    public ShoppingListResource(UUID shoppingListId, String name, ArrayList<String> ingredients) {
         this.shoppingListId = shoppingListId;
         this.name = name;
         this.ingredients = ingredients;
@@ -53,7 +51,7 @@ public class ShoppingList {
         this.ingredients = ingredients;
     }
 
-    public void addCoctail(Cocktail cocktail) {
+    public void addCoctail(CocktailResource cocktail) {
         if (cocktail.getIngredients() != null) this.ingredients.addAll(cocktail.getIngredients());
     }
 
